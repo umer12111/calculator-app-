@@ -1,7 +1,4 @@
 
-AZAN IJAZ BUTT
-8:20 AM (0 minutes ago)
-to me
 
 import streamlit as st
 import math
