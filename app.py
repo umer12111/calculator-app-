@@ -1,57 +1,101 @@
-import tkinter as tk
 
-class CalculatorApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Calculator")
-        self.root.geometry("400x500")
+AZAN IJAZ BUTT
+8:20 AM (0 minutes ago)
+to me
 
-        self.current_input = ""
-        self.result_var = tk.StringVar()
+import streamlit as st
+import math
 
-        self.create_widgets()
+# Functions for basic operations
+def add(x, y):
+    return x + y
 
-    def create_widgets(self):
-        # Display field
-        self.result_label = tk.Label(self.root, textvariable=self.result_var, height=2, anchor="e", padx=10, font=('Arial', 24), bg="lightgray")
-        self.result_label.grid(row=0, column=0, columnspan=4, sticky="nsew")
+def subtract(x, y):
+    return x - y
 
-        # Button layout
-        buttons = [
-            ('7', 1, 0), ('8', 1, 1), ('9', 1, 2), ('/', 1, 3),
-            ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('*', 2, 3),
-            ('1', 3, 0), ('2', 3, 1), ('3', 3, 2), ('-', 3, 3),
-            ('0', 4, 0), ('.', 4, 1), ('+', 4, 2), ('=', 4, 3),
-        ]
+def multiply(x, y):
+    return x * y
 
-        for (text, row, col) in buttons:
-            self.create_button(text, row, col)
+def divide(x, y):
+    if y == 0:
+        return "Error! Division by zero."
+    return x / y
 
-        # Clear button
-        self.clear_button = tk.Button(self.root, text="C", height=2, font=('Arial', 18), command=self.clear_input)
-        self.clear_button.grid(row=5, column=0, columnspan=4, sticky="nsew")
+def square_root(x):
+    if x < 0:
+        return "Error! Negative number."
+    return math.sqrt(x)
 
-    def create_button(self, text, row, col):
-        button = tk.Button(self.root, text=text, height=2, width=5, font=('Arial', 18), command=lambda: self.on_button_click(text))
-        button.grid(row=row, column=col, sticky="nsew")
+# Streamlit UI
+st.title("Simple Calculator")
 
-    def on_button_click(self, text):
-        if text == "=":
-            try:
-                # Evaluate the expression and update the result
-                self.current_input = str(eval(self.current_input))
-            except Exception as e:
-                self.current_input = "Error"
-        else:
-            self.current_input += text
-        self.result_var.set(self.current_input)
+# User inputs
+num1 = st.number_input("Enter first number", step=1.0)
+num2 = st.number_input("Enter second number", step=1.0)
+   
+operation = st.radio(
+    "Choose an operation",
+    ("Add", "Subtract", "Multiply", "Divide", "Square Root")
+)
 
-    def clear_input(self):
-        self.current_input = ""
-        self.result_var.set("")
+if operation == "Add":
+    result = add(num1, num2)
+elif operation == "Subtract":
+    result = subtract(num1, num2)
+elif operation == "Multiply":
+    result = multiply(num1, num2)
+elif operation == "Divide":
+    result = divide(num1, num2)
+elif operation == "Square Root":
+    result = square_root(num1)
 
-# Main part to run the app
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = CalculatorApp(root)
-    root.mainloop()
+# Display result
+st.write(f"Result: {result}")
+import streamlit as st
+import math
+
+# Functions for basic operations
+def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y
+
+def multiply(x, y):
+    return x * y
+
+def divide(x, y):
+    if y == 0:
+        return "Error! Division by zero."
+    return x / y
+
+def square_root(x):
+    if x < 0:
+        return "Error! Negative number."
+    return math.sqrt(x)
+
+# Streamlit UI
+st.title("Simple Calculator")
+
+# User inputs
+num1 = st.number_input("Enter first number", step=1.0)
+num2 = st.number_input("Enter second number", step=1.0)
+   
+operation = st.radio(
+    "Choose an operation",
+    ("Add", "Subtract", "Multiply", "Divide", "Square Root")
+)
+
+if operation == "Add":
+    result = add(num1, num2)
+elif operation == "Subtract":
+    result = subtract(num1, num2)
+elif operation == "Multiply":
+    result = multiply(num1, num2)
+elif operation == "Divide":
+    result = divide(num1, num2)
+elif operation == "Square Root":
+    result = square_root(num1)
+
+# Display result
+st.write(f"Result: {result}")
